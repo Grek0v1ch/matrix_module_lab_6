@@ -1,4 +1,3 @@
-#include <iostream>
 #include <cstdio>
 #include "chek_io.hpp"
 
