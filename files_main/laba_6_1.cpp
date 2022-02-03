@@ -26,9 +26,6 @@ int main() {
 	printf("Значение f(A) + g(A):\n");
 	matrix_sum(res1, res2, size_matrix, 1);
 	output_sqr_matrix(res1, size_matrix);
-	// Добавлены строчки кода
-	printf("Привет");
-	// [f[f[f[f[f[[ff[]]]]]]]]
 
 	free_sqr_matrix(res1, size_matrix);
 	free_sqr_matrix(res2, size_matrix);
