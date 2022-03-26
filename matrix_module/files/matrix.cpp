@@ -3,12 +3,12 @@
 #include "matrix.hpp"
 #include "chek_io.hpp"
 
-// Р¤СѓРЅРєС†РёРё, РѕРїРµСЂРµРґРµР»РµРЅРЅС‹Рµ С‚РѕР»СЊРєРѕ РґР»СЏ РєРІР°РґСЂР°С‚РЅС‹С… РјР°С‚СЂРёС†, РёРјРµСЋС‚ РІ СЃРІРѕРµРј РёРјРµРЅРё РїРѕРґСЃС‚СЂРѕРєСѓ "_sqr_"
-// РёР»Рё СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ РєРѕРјРјРµРЅС‚Р°СЂРёР№ РїРµСЂРµРґ РѕРїРёСЃР°РЅРёРµРј С„СѓРЅРєС†РёРё.
+// Функции, опеределенные только для квадратных матриц, имеют в своем имени подстроку "_sqr_"
+// или соответствующий комментарий перед описанием функции.
 
-// Р¤СѓРЅРєС†РёСЏ СЃРѕР·РґР°РµС‚ РЅСѓР»РµРІСѓСЋ РјР°С‚СЂРёС†Сѓ СЂР°Р·РјРµСЂР° str_count РЅР° column_count.
+// Функция создает нулевую матрицу размера str_count на column_count.
 matrix_ptr create_matrix(int str_count, int column_count) {
-	matrix_ptr result = new double *[str_count];
+	matrix_ptr result = new double* [str_count];
 	for (int i = 0; i < str_count; i++) {
 		result[i] = new double[column_count];
 		for (int j = 0; j < column_count; j++)
@@ -17,9 +17,9 @@ matrix_ptr create_matrix(int str_count, int column_count) {
 	return result;
 }
 
-// Р¤СѓРЅРєС†РёСЏ СЃРѕР·РґР°РµС‚ РЅСѓР»РµРІСѓСЋ РєРІР°РґСЂР°С‚РЅСѓСЋ РјР°С‚СЂРёС†Сѓ СЂР°Р·РјРµСЂР° size_matrix Рё РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅРµРµ.
+// Функция создает нулевую квадратную матрицу размера size_matrix и возвращает указатель на нее.
 matrix_ptr create_sqr_matrix(int size_matrix) {
-	matrix_ptr result = new double *[size_matrix];
+	matrix_ptr result = new double* [size_matrix];
 	for (int i = 0; i < size_matrix; i++) {
 		result[i] = new double[size_matrix];
 		for (int j = 0; j < size_matrix; j++)
@@ -28,9 +28,9 @@ matrix_ptr create_sqr_matrix(int size_matrix) {
 	return result;
 }
 
-// Р¤СѓРЅРєС†РёСЏ СЃРѕР·РґР°РµС‚ РµРґРёРЅРёС‡РЅСѓСЋ РєРІР°РґСЂР°С‚РЅСѓСЋ РјР°С‚СЂРёС†Сѓ СЂР°Р·РјРµСЂР° size_matrix Рё РІРѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅРµРµ.
+// Функция создает единичную квадратную матрицу размера size_matrix и возвращает указатель на нее.
 matrix_ptr create_sqr_unit_matrix(int size_matrix) {
-	matrix_ptr result = new double *[size_matrix];
+	matrix_ptr result = new double* [size_matrix];
 	for (int i = 0; i < size_matrix; i++) {
 		result[i] = new double[size_matrix];
 		for (int j = 0; j < size_matrix; j++)
@@ -39,7 +39,7 @@ matrix_ptr create_sqr_unit_matrix(int size_matrix) {
 	return result;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РѕС‡РёС‰Р°РµС‚ РїР°РјСЏС‚СЊ Р·Р°РЅСЏС‚СѓСЋ РјР°С‚СЂРёС†РµР№ Рё СЃС‚РёСЂР°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅРµРµ.
+// Функция очищает память занятую матрицей и стирает указатель на нее.
 void free_matrix(matrix_ptr matrix, int str_count, int column_count) {
 	for (int i = 0; i < str_count; i++) {
 		for (int j = 0; j < column_count; j++)
@@ -50,7 +50,7 @@ void free_matrix(matrix_ptr matrix, int str_count, int column_count) {
 	matrix = 0;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РѕС‡РёС‰Р°РµС‚ РїР°РјСЏС‚СЊ Р·Р°РЅСЏС‚СѓСЋ РєРІР°РґСЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†РµР№ Рё СЃС‚РёСЂР°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅРµРµ.
+// Функция очищает память занятую квадратной матрицей и стирает указатель на нее.
 void free_sqr_matrix(matrix_ptr matrix, int size_matrix) {
 	for (int i = 0; i < size_matrix; i++) {
 		for (int j = 0; j < size_matrix; j++)
@@ -61,7 +61,7 @@ void free_sqr_matrix(matrix_ptr matrix, int size_matrix) {
 	matrix = 0;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РєРѕРїРёСЂСѓРµС‚ РјР°С‚СЂРёС†Сѓ matrix_src РІ РјР°С‚СЂРёС†Сѓ matrix_dst (СЂР°Р·РјРµСЂС‹ РјР°С‚СЂРёС† РґРѕР»Р¶РЅС‹ СЃРѕРІРїР°РґР°С‚СЊ).
+// Функция копирует матрицу matrix_src в матрицу matrix_dst (размеры матриц должны совпадать).
 void copy_matrix(matrix_ptr matrix_dst, matrix_ptr matrix_src, int str_count, int column_count) {
 	for (int i = 0; i < str_count; i++)
 		for (int j = 0; j < column_count; j++)
@@ -69,7 +69,7 @@ void copy_matrix(matrix_ptr matrix_dst, matrix_ptr matrix_src, int str_count, in
 	return;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РєРѕРїРёСЂСѓРµС‚ РјР°С‚СЂРёС†Сѓ matrix_src РІ РјР°С‚СЂРёС†Сѓ matrix_dst (РјР°С‚СЂРёС†С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РєРІР°РґСЂР°С‚РЅС‹РјРё Рё РёС… СЂР°Р·РјРµСЂ СЃРѕРІРїР°РґР°С‚СЊ)
+// Функция копирует матрицу matrix_src в матрицу matrix_dst (матрицы должны быть квадратными и их размер совпадать)
 void copy_sqr_matrix(matrix_ptr matrix_dst, matrix_ptr matrix_src, int size_matrix) {
 	for (int i = 0; i < size_matrix; i++)
 		for (int j = 0; j < size_matrix; j++)
@@ -77,11 +77,11 @@ void copy_sqr_matrix(matrix_ptr matrix_dst, matrix_ptr matrix_src, int size_matr
 	return;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РІРІРѕРґР° РІРµС‰РµСЃС‚РІРµРЅРЅРѕР№ РјР°С‚СЂРёС†С‹ СЂР°Р·РјРµСЂР° str_count РЅР° column_count.
-matrix_ptr input_matrix(int &str_count, int &column_count) {
-	printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РјР°С‚СЂРёС†С‹: ");
+// Функция ввода вещественной матрицы размера str_count на column_count.
+matrix_ptr input_matrix(int& str_count, int& column_count) {
+	printf("Введите количество строк матрицы: ");
 	str_count = one_natur_num_input();
-	printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ РјР°С‚СЂРёС†С‹: ");
+	printf("Введите количество столбцов матрицы: ");
 	column_count = one_natur_num_input();
 	matrix_ptr matrix = create_matrix(str_count, column_count);
 	for (int i = 0; i < str_count; i++)
@@ -92,12 +92,12 @@ matrix_ptr input_matrix(int &str_count, int &column_count) {
 	return matrix;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РІРІРѕРґР° РІРµС‰РµСЃС‚РІРµРЅРЅРѕР№ РєРІР°РґСЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹.
-matrix_ptr input_sqr_matrix(int &size_matrix) {
-	printf("Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РєРІР°РґСЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹: ");
+// Функция ввода вещественной квадратной матрицы.
+matrix_ptr input_sqr_matrix(int& size_matrix) {
+	printf("Введите размер квадратной матрицы: ");
 	size_matrix = one_natur_num_input();
 	matrix_ptr matrix = create_sqr_matrix(size_matrix);
-	printf("Р’РІРµРґРёС‚Рµ СЌР»РµРјРµРЅС‚С‹ РјР°С‚СЂРёС†С‹:\n");
+	printf("Введите элементы матрицы:\n");
 	for (int i = 0; i < size_matrix; i++)
 		for (int j = 0; j < size_matrix; j++) {
 			printf("matrix[%d][%d]: ", i + 1, j + 1);
@@ -106,7 +106,7 @@ matrix_ptr input_sqr_matrix(int &size_matrix) {
 	return matrix;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РІС‹РІРѕРґР° РјР°С‚СЂРёС†С‹.
+// Функция вывода матрицы.
 void output_matrix(matrix_ptr matrix, int str_count, int column_count) {
 	for (int i = 0; i < str_count; i++) {
 		for (int j = 0; j < column_count; j++)
@@ -115,7 +115,7 @@ void output_matrix(matrix_ptr matrix, int str_count, int column_count) {
 	}
 }
 
-// Р¤СѓРЅРєС†РёСЏ РІС‹РІРѕРґР° РєРІР°РґСЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹.
+// Функция вывода квадратной матрицы.
 void output_sqr_matrix(matrix_ptr matrix, int size_matrix) {
 	for (int i = 0; i < size_matrix; i++) {
 		for (int j = 0; j < size_matrix; j++)
@@ -124,27 +124,27 @@ void output_sqr_matrix(matrix_ptr matrix, int size_matrix) {
 	}
 }
 
-// Р¤СѓРЅРєС†РёСЏ РѕРїСЂРµРґРµР»РµРЅР° С‚РѕР»СЊРєРѕ РґР»СЏ РєРІР°РґСЂР°С‚РЅС‹С… РјР°С‚СЂРёС†.
-// Р¤СѓРЅРєС†РёСЏ СѓРјРЅРѕР¶Р°РµС‚ РґРІРµ РјР°С‚СЂРёС†С‹ СЂР°Р·РјРµСЂР° size_matrix Рё Р·Р°РїРёСЃС‹РІР°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РІ matrix1.
+// Функция определена только для квадратных матриц.
+// Функция умножает две матрицы размера size_matrix и записывает результат в matrix1.
 void matrix_multip(matrix_ptr matrix1, matrix_ptr matrix2, int size_matrix) {
 	matrix_ptr matrix_res = create_sqr_matrix(size_matrix);
-	// РџРµРµСЂРµС…РѕРґРёРј РІ СЌР»РµРјРµРЅС‚ matrix_res[i][j].
+	// Пеереходим в элемент matrix_res[i][j].
 	for (int i = 0; i < size_matrix; i++)
 		for (int j = 0; j < size_matrix; j++)
-			// Р’С‹С‡РёСЃР»СЏРµРј СЌР»РµРјРµРЅС‚ matrix_res[i][j].
+			// Вычисляем элемент matrix_res[i][j].
 			for (int l = 0; l < size_matrix; l++)
 				matrix_res[i][j] += matrix1[i][l] * matrix2[l][j];
-	// РљРѕРїРёСЂСѓРµРј СЂРµР·СѓР»СЊС‚Р°С‚ РІ matrix1 Рё СѓРґР°Р»СЏРµРј matrix_res.
+	// Копируем результат в matrix1 и удаляем matrix_res.
 	copy_sqr_matrix(matrix1, matrix_res, size_matrix);
 	free_sqr_matrix(matrix_res, size_matrix);
 	return;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РѕРїСЂРµРґРµР»РµРЅР° С‚РѕР»СЊРєРѕ РґР»СЏ РєРІР°РґСЂР°С‚РЅС‹С… РјР°С‚СЂРёС†.
-// Р¤СѓРЅРєС†РёСЏ РїСЂРёР±Р°РІР»СЏРµС‚ Рє matrix1 matrix2 СЃРѕ Р·РЅР°РєРѕРј operand Рё Р·Р°РїРёСЃС‹РІР°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РІ matrix1.
+// Функция определена только для квадратных матриц.
+// Функция прибавляет к matrix1 matrix2 со знаком operand и записывает результат в matrix1.
 void matrix_sum(matrix_ptr matrix1, matrix_ptr matrix2, int size_matrix, int operand) {
-	// operand Р·Р°РґР°РµС‚ Р·РЅР°Рє СЃР»РѕР¶РµРЅРёСЏ: -1 - РІС‹С‡РёС‚Р°РЅРёРµ, 1 - СЃР»РѕР¶РµРЅРёРµ.
-	// Р‘Р»РѕРє РґР»СЏ РѕС‚Р»Р°РґРєРё.
+	// operand задает знак сложения: -1 - вычитание, 1 - сложение.
+	// Блок для отладки.
 	if (abs(operand) != 1) {
 		printf("error in matrix_sum\n");
 		return;
@@ -153,33 +153,33 @@ void matrix_sum(matrix_ptr matrix1, matrix_ptr matrix2, int size_matrix, int ope
 	for (int i = 0; i < size_matrix; i++)
 		for (int j = 0; j < size_matrix; j++)
 			matrix_res[i][j] = matrix1[i][j] + static_cast<double>(operand) * matrix2[i][j];
-	// РљРѕРїРёСЂСѓРµРј СЂРµР·СѓР»СЊС‚Р°С‚ РІ matrix1 Рё СѓРґР°Р»СЏРµРј matrix_res.
+	// Копируем результат в matrix1 и удаляем matrix_res.
 	copy_sqr_matrix(matrix1, matrix_res, size_matrix);
 	free_sqr_matrix(matrix_res, size_matrix);
 	return;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РѕРїСЂРµРґРµР»РµРЅР° С‚РѕР»СЊРєРѕ РґР»СЏ РєРІР°РґСЂР°С‚РЅС‹С… РјР°С‚СЂРёС†.
-// Р¤СѓРЅРєС†РёСЏ СѓРјРЅРѕР¶Р°РµС‚ РјР°С‚СЂРёС†Сѓ РЅР° С‡РёСЃР»Рѕ Рё Р·Р°РїРёСЃС‹РІР°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РІ matrix.
+// Функция определена только для квадратных матриц.
+// Функция умножает матрицу на число и записывает результат в matrix.
 void matrix_multip_by_number(matrix_ptr matrix, double number, int size_matrix) {
 	matrix_ptr matrix_res = create_sqr_matrix(size_matrix);
 	for (int i = 0; i < size_matrix; i++)
 		for (int j = 0; j < size_matrix; j++)
 			matrix_res[i][j] = number * matrix[i][j];
-	// РљРѕРїРёСЂСѓРµРј СЂРµР·СѓР»СЊС‚Р°С‚ РІ matrix1 Рё СѓРґР°Р»СЏРµРј matrix_res.
+	// Копируем результат в matrix1 и удаляем matrix_res.
 	copy_sqr_matrix(matrix, matrix_res, size_matrix);
 	free_sqr_matrix(matrix_res, size_matrix);
 	return;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РїСЂРёРІРµРґРµРЅРёСЏ РјР°С‚СЂРёС†С‹ Рє СЃС‚СѓРїРµРЅС‡Р°С‚РѕРјСѓ РІРёРґСѓ.
+// Функция приведения матрицы к ступенчатому виду.
 void to_stepped_matrix_type(matrix_ptr matrix, int str_count, int column_count) {
 	for (int i = 0; i < str_count - 1; i++)
 		for (int j = 0; j < column_count; j++) {
-			// РќР°С…РѕРґРёРј РЅРµРЅСѓР»РµРІРѕР№ СЌР»РµРјРµРЅС‚.
+			// Находим ненулевой элемент.
 			if (matrix[i][j] == 0.0)
 				continue;
-			// Р’С‹С‡РёС‚Р°РµРј РІРµСЂС…РЅСЋСЋ СЃС‚СЂРѕРєСѓ РёР· РЅРёР¶РЅРµР№, Р·Р°РЅСѓР»СЏСЏ РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚.
+			// Вычитаем верхнюю строку из нижней, зануляя первый элемент.
 			for (int k = i + 1; k < str_count; k++) {
 				for (int l = j + 1; l < column_count; l++)
 					matrix[k][l] = matrix[i][j] * matrix[k][l] - matrix[k - 1][l] * matrix[i + 1][j];
@@ -190,7 +190,7 @@ void to_stepped_matrix_type(matrix_ptr matrix, int str_count, int column_count) 
 	return;
 }
 
-// Р¤СѓРЅРєС†РёСЏ СЃС‡РёС‚Р°РµС‚ СЂР°РЅРі РјР°С‚СЂРёС†С‹.
+// Функция считает ранг матрицы.
 int rang_matrix(matrix_ptr matrix, int str_count, int column_count) {
 	matrix_ptr matrix_src = create_matrix(str_count, column_count);
 	copy_matrix(matrix_src, matrix, str_count, column_count);
@@ -209,8 +209,8 @@ int rang_matrix(matrix_ptr matrix, int str_count, int column_count) {
 	return count_nzero_str;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РѕРїСЂРµРґРµР»РµРЅР° С‚РѕР»СЊРєРѕ РґР»СЏ РєРІР°РґСЂР°С‚РЅС‹С… РјР°С‚СЂРёС†.
-// Р¤СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ РїРѕРґРјР°С‚СЂРёС†Сѓ РєРІР°РґСЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹ Р±РµР· i-РіРѕ СЃС‚РѕР»Р±С†Р° Рё j-РѕР№ СЃС‚СЂРѕРєРё
+// Функция определена только для квадратных матриц.
+// Функция возвращает подматрицу квадратной матрицы без i-го столбца и j-ой строки
 matrix_ptr matrix_minor(matrix_ptr matrix, int size_matrix, int str_number, int column_number) {
 	matrix_ptr minor = create_sqr_matrix(size_matrix - 1);
 	int minor_str = 0, minor_column = 0;
@@ -230,17 +230,17 @@ matrix_ptr matrix_minor(matrix_ptr matrix, int size_matrix, int str_number, int 
 	return minor;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РѕРїСЂРµРґРµР»РµРЅР° С‚РѕР»СЊРєРѕ РґР»СЏ РєРІР°РґСЂР°С‚РЅС‹С… РјР°С‚СЂРёС†.
-// Р¤СѓРЅРєС†РёСЏ РЅР°С…РѕРґРёС‚ РѕРїСЂРµРґРµР»РёС‚РµР»СЊ РјР°С‚СЂРёС†С‹.
+// Функция определена только для квадратных матриц.
+// Функция находит определитель матрицы.
 double matrix_determinant(matrix_ptr matrix, int size_matrix) {
 	double answer = 0.0;
 	if (size_matrix == 1)
 		return matrix[0][0];
 	if (size_matrix == 2) {
-		 answer = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
-		 return answer;
+		answer = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+		return answer;
 	}
-	// РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ СЂР°Р·Р»РѕР¶РµРЅРёРµ РїРѕ РїРµСЂРІРѕР№ СЃС‚СЂРѕРєРµ РјР°С‚СЂРёС†С‹.
+	// Используется разложение по первой строке матрицы.
 	for (int i = 0; i < size_matrix; i++) {
 		matrix_ptr minor = matrix_minor(matrix, size_matrix, 0, i);
 		double sign = (i % 2 == 0) ? 1.0 : -1.0;
@@ -250,7 +250,7 @@ double matrix_determinant(matrix_ptr matrix, int size_matrix) {
 	return answer;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰Р°РµС‚ С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅСѓСЋ РјР°С‚СЂРёС†Сѓ matrix.
+// Функция возвращает транспонированую матрицу matrix.
 matrix_ptr matrix_transpose(matrix_ptr matrix, int str_count, int column_count) {
 	matrix_ptr matrix_t = create_matrix(column_count, str_count);
 	for (int i = 0; i < column_count; i++)
@@ -259,15 +259,15 @@ matrix_ptr matrix_transpose(matrix_ptr matrix, int str_count, int column_count) 
 	return matrix_t;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РѕРїСЂРµРґРµР»РµРЅР° С‚РѕР»СЊРєРѕ РґР»СЏ РєРІР°РґСЂР°С‚РЅС‹С… РјР°С‚СЂРёС†.
-// Р¤СѓРЅРєС†РёСЏ РЅР°С…РѕРґРёС‚ РѕР±СЂР°С‚РЅСѓСЋ РґР»СЏ РјР°С‚СЂРёС†С‹ matrix РјР°С‚СЂРёС†Сѓ Рё Р·Р°РїРёСЃС‹РІР°РµС‚ РµРµ РІ РјР°С‚СЂРёС†Сѓ invr_matrix.
-// Р’РµСЂРЅРµС‚ true РµСЃР»Рё РѕР±СЂР°С‚РЅР°СЏ РјР°С‚СЂРёС†Р° Р±С‹Р»Р° РЅР°Р№РґРµРЅРЅР° Рё false РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.
+// Функция определена только для квадратных матриц.
+// Функция находит обратную для матрицы matrix матрицу и записывает ее в матрицу invr_matrix.
+// Вернет true если обратная матрица была найденна и false в противном случае.
 bool inverse_matrix(matrix_ptr invr_matrix, matrix_ptr matrix, int size_matrix) {
 	double determinant = matrix_determinant(matrix, size_matrix);
 	if (determinant == 0.0)
 		return false;
 	for (int i = 0; i < size_matrix; i++)
-		for (int j = 0; j < size_matrix; j++){
+		for (int j = 0; j < size_matrix; j++) {
 			matrix_ptr minor = matrix_minor(matrix, size_matrix, i, j);
 			double sign = ((i + j) % 2 == 0) ? 1.0 : -1.0;
 			invr_matrix[i][j] = sign * matrix_determinant(minor, size_matrix - 1) / determinant;
@@ -281,41 +281,61 @@ bool inverse_matrix(matrix_ptr invr_matrix, matrix_ptr matrix, int size_matrix) 
 	return true;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РѕРїСЂРµРґРµР»РµРЅР° С‚РѕР»СЊРєРѕ РґР»СЏ РєРІР°РґСЂР°С‚РЅС‹С… РјР°С‚СЂРёС†.
-// Р¤СѓРЅРєС†РёСЏ СЃС‡РёС‚Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РІС‹СЂР°Р¶РµРЅРёСЏ 2x^2 - x, РіРґРµ С… - РєРІР°РґСЂР°С‚РЅР°СЏ РјР°С‚СЂРёС†Р°.
+// Функция определена только для квадратных матриц.
+// Функция считает значение выражения 2x^2 - x, где х - квадратная матрица.
 matrix_ptr function_f(matrix_ptr matrix_A, int size_matrix) {
 	matrix_ptr answer = create_sqr_matrix(size_matrix);
 	copy_sqr_matrix(answer, matrix_A, size_matrix);
 	matrix_multip(answer, matrix_A, size_matrix);
 	matrix_multip_by_number(answer, 2.0, size_matrix);
-	printf("Р—РЅР°С‡РµРЅРёРµ 2*x^2:\n");
+	printf("Значение 2*x^2:\n");
 	output_sqr_matrix(answer, size_matrix);
-	printf("Р—РЅР°С‡РµРЅРёРµ С…\n");
+	printf("Значение х\n");
 	output_sqr_matrix(matrix_A, size_matrix);
 	matrix_sum(answer, matrix_A, size_matrix, -1);
 	return answer;
 }
 
-// Р¤СѓРЅРєС†РёСЏ РѕРїСЂРµРґРµР»РµРЅР° С‚РѕР»СЊРєРѕ РґР»СЏ РєРІР°РґСЂР°С‚РЅС‹С… РјР°С‚СЂРёС†.
-// Р¤СѓРЅРєС†РёСЏ СЃС‡РёС‚Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РІС‹СЂР°Р¶РµРЅРёСЏ 2x^3 - x + 3, РіРґРµ С… - РєРІР°РґСЂР°С‚РЅР°СЏ РјР°С‚СЂРёС†Р°.
+// Функция определена только для квадратных матриц.
+// Функция считает значение выражения 2x^3 - x + 3, где х - квадратная матрица.
 matrix_ptr function_g(matrix_ptr matrix_A, int size_matrix) {
 	matrix_ptr answer = create_sqr_matrix(size_matrix);
 	copy_sqr_matrix(answer, matrix_A, size_matrix);
 	matrix_multip(answer, matrix_A, size_matrix);
 	matrix_multip(answer, matrix_A, size_matrix);
 	matrix_multip_by_number(answer, 2.0, size_matrix);
-	printf("Р—РЅР°С‡РµРЅРёРµ 2*x^3:\n");
+	printf("Значение 2*x^3:\n");
 	output_sqr_matrix(answer, size_matrix);
-	printf("Р—РЅР°С‡РµРЅРёРµ С…\n");
+	printf("Значение х\n");
 	output_sqr_matrix(matrix_A, size_matrix);
 	matrix_sum(answer, matrix_A, size_matrix, -1);
-	printf("Р—РЅР°С‡РµРЅРёРµ 2*x^3 - x:\n");
+	printf("Значение 2*x^3 - x:\n");
 	output_sqr_matrix(answer, size_matrix);
 	matrix_ptr matrix_number = create_sqr_unit_matrix(size_matrix);
 	matrix_multip_by_number(matrix_number, 3.0, size_matrix);
-	printf("Р—РЅР°С‡РµРЅРёРµ 3*E\n");
+	printf("Значение 3*E\n");
 	output_sqr_matrix(matrix_number, size_matrix);
 	matrix_sum(answer, matrix_number, size_matrix, 1);
 	free_sqr_matrix(matrix_number, size_matrix);
 	return answer;
+}
+
+//Функция для решения матричного уравнения A*x - 3*x = B
+matrix_ptr matrix_equal(matrix_ptr matrix_A, matrix_ptr matrix_B, int size_matrix) {
+	matrix_ptr buff1 = create_sqr_unit_matrix(size_matrix);
+	matrix_ptr buff2 = create_sqr_matrix(size_matrix);
+	//3.0 - число для умножения  
+	matrix_multip_by_number(buff1, 3.0, size_matrix);
+	copy_sqr_matrix(buff2, matrix_A, size_matrix);
+	matrix_sum(buff2, buff1, size_matrix, -1);
+	bool is_inverse_matrix = inverse_matrix(buff1, buff2, size_matrix);
+	if (not is_inverse_matrix)
+		printf("Нет решений\n");
+	else {
+		matrix_multip(buff1, matrix_B, size_matrix);
+		printf("Матрица Х равна:\n");
+		output_sqr_matrix(buff1, size_matrix);
+	}
+	free_sqr_matrix(buff2, size_matrix);
+	return buff1;
 }
